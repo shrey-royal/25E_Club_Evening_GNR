@@ -11,7 +11,20 @@ C++ is a general purpose programming language and widely used nowadays for compe
 using namespace std;    //namespace created by c++
 
 int main() {
+    int n;
+    string name;
     cout << "Hello World!" << endl;
+
+    cout << "Enter n: ";
+    cin >> n;
+
+    cin.ignore();   //clear the buffer memory
+    cout << "Enter your name: ";
+    // cin >> name; //one word
+    getline(cin, name);
+
+    cout << "\nn = " << n << endl;
+    cout << "\nName = " << name << endl;
 
     return 0;
 }
