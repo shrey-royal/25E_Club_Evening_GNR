@@ -19,17 +19,55 @@ public:
         this->price = price;
     }
 
+    Watch(Watch& obj) {
+        this->brand = obj.brand;
+        this->type = obj.type;
+        this->price = obj.price;
+    }
+
     void getWatchSpecs() {
         cout << "Brand: " << brand << ", Type: " << type << ", Price: " << price << "\\-" << endl;
     }
+
+    ~Watch() {
+        cout << "Destructor called!" << endl;
+    }
 };
 
-int main() {
-    Watch wristWatch("Rolex Oyster Perpeptual", "wrist", 528100);
-    wristWatch.getWatchSpecs();
-
+void fun() {
     Watch watch;
     watch.getWatchSpecs();
+}
+
+int main() {
+    // Watch wristWatch("Rolex Oyster Perpeptual", "wrist", 528100);
+    // wristWatch.getWatchSpecs();
+
+    // Watch watch;
+    // watch.getWatchSpecs();
+
+    // Watch watch1(wristWatch);
+    // watch1.getWatchSpecs();
+
+    // string brand, type;
+    // double price;
+
+    // cout << "Enter brand: ";
+    // getline(cin, brand);
+    
+    // cout << "Enter type: ";
+    // cin >> type;
+    
+    // cout << "Enter price: ";
+    // cin >> price;
+
+    // Watch w(brand, type, price), main_w(w);
+
+    // main_w.getWatchSpecs();
+
+    cout << "Start" << endl;
+    fun();
+    cout << "End" << endl;
 
     return 0;
 }
