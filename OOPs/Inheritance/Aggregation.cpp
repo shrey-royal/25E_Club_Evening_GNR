@@ -46,7 +46,9 @@ Employee Management System
 5. Delete Employee
 6. Calculate Total Salary Expenditure
 7. Calculate Average Salary
-8. Exit
+8. Calculate Average Salary By Department
+9. Fetch Highest & Lowest employee salary with details.
+0. Exit
 
 Enter your choice: 1
 Enter employee ID: 101
@@ -73,6 +75,7 @@ Total Salary Expenditure: 55000
 */
 
 #include<iostream>
+#include<iomanip>
 using namespace std;
 
 #define MAX_EMPLOYEES 100
@@ -131,7 +134,7 @@ public:
         }
     }
 
-    void displayEmployeeByID(int id) {
+    void getEmployeeByID(int id) {
         bool found = false;
 
         for (int i = 0; i < total_employees; i++) {
@@ -189,23 +192,128 @@ public:
             cout << "No Employee found with id: " << id << endl;
         }
     }
+
+    void totalSalaryExpenditure() {
+        double totalSalary = 0;
+        cout << "---------------------------------------------------------" << endl;
+        if (total_employees > 0) {
+            for (int i = 0; i < total_employees; i++) {
+                totalSalary += employees[i].salary;
+            }
+            cout << "Total Salary Expenditure: " << fixed << setprecision(2) << totalSalary << endl;
+        } else {
+            cout << "There are no employees!" << endl;
+        }
+        cout << "---------------------------------------------------------" << endl;
+    }
+
+    void averageSalaryExpenditure() {
+        double totalSalary = 0;
+        cout << "---------------------------------------------------------" << endl;
+        if (total_employees > 0) {
+            for (int i = 0; i < total_employees; i++) {
+                totalSalary += employees[i].salary;
+            }
+            cout << "Average Salary Expenditure: " << fixed << setprecision(2) << (totalSalary/total_employees) << endl;
+        } else {
+            cout << "There are no employees!" << endl;
+        }
+        cout << "---------------------------------------------------------" << endl;
+    }
+
 };
 
 int main() {
     EmployeeManagementSystem emp_sys;
-
-    emp_sys.addNewEmployee(Employee(101, "Alice", "Developer", 4000));
-    emp_sys.addNewEmployee(Employee(102, "Bob", "Software Engineer", 6000));
-    emp_sys.addNewEmployee(Employee(103, "Charlie", "Manager", 8000));
-    emp_sys.addNewEmployee(Employee(104, "David", "Team Lead", 10000));
-    emp_sys.displayAllEmployees();
-
-    emp_sys.updateEmployeeDetails(102, "Krish yadav", "Collector", 5000);
+    int choice, id;
+    string name, department;
+    double salary;
     
-    emp_sys.displayAllEmployees();
-    
-    // emp_sys.displayEmployeeByID(1003);
-    // emp_sys.deleteEmployeeByID(103);
+    do {
+        cout << "Employee Management System: " << endl;
+        cout << "1. Add Employee" << endl;
+        cout << "2. View All Employees" << endl;
+        cout << "3. Search Employee by ID" << endl;
+        cout << "4. Update Employee Information" << endl;
+        cout << "5. Delete Employee" << endl;
+        cout << "6. Calculate Total Salary Expenditure" << endl;
+        cout << "7. Calculate Average Salary" << endl;
+        cout << "8. Calculate Average Salary By Department" << endl;
+        cout << "9. Fetch Highest & Lowest employee salary with details." << endl;
+        cout << "0. Exit" << endl;
+        cout << "Enter your choice: " << endl;
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter id: ";
+                cin >> id;
+                cin.ignore();
+                cout << "Enter name: ";
+                getline(cin, name);
+                cout << "Enter department: ";
+                cin >> department;
+                cout << "Enter salary: ";
+                cin >> salary;
+                
+                emp_sys.addNewEmployee(Employee(id, name, department, salary));
+                break;
+
+            case 2:
+                emp_sys.displayAllEmployees();
+                break;
+        
+            case 3:
+                cout << "Enter id: ";
+                cin >> id;  
+                emp_sys.getEmployeeByID(id);
+                break;
+
+            case 4:
+                cout << "Enter id: ";
+                cin >> id;
+                cin.ignore();
+                cout << "Enter name: ";
+                getline(cin, name);
+                cout << "Enter department: ";
+                cin >> department;
+                cout << "Enter salary: ";
+                cin >> salary;
+                
+                emp_sys.updateEmployeeDetails(id, name, department, salary);
+                break;
+
+            case 5:
+                cout << "Enter id: ";
+                cin >> id;  
+                emp_sys.deleteEmployeeByID(id);
+                break;
+
+            case 6:
+                emp_sys.totalSalaryExpenditure();
+                break;
+        
+            case 7:
+                emp_sys.averageSalaryExpenditure();
+                break;
+
+            case 8:
+                cout << "TODO" << endl;
+                break;
+
+            case 9:
+                cout << "TODO" << endl;
+                break;
+
+            case 0:
+                cout << "Exiting this program!" << endl;
+                break;
+            
+            default:
+                cout << "Invalid Choice..." << endl;
+                break;
+        }
+    } while(choice != 0);
 
     return 0;
 }
