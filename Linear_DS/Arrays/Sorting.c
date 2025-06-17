@@ -30,6 +30,20 @@ void bubbleSort(int* arr, int size) {
     }
 }
 
+void selectionSort(int* arr, int size) {
+    for (int i = 0; i < size-1; i++) {
+        int min_idx = i;
+        for (int j = i+1; j < size; j++) {
+            if (arr[min_idx] > arr[j]) {
+                min_idx = j;
+            }
+        }
+        if (min_idx != i) {
+            swap(arr+i, arr+min_idx);
+        }
+    }
+}
+
 void test() {
     const int size = 100000;
     // const int size = rand() % 500;  //0 to 499
@@ -45,8 +59,8 @@ void test() {
     printf("\nSorting started!");
     clock_t start = clock();
     
-    bubbleSort(arr, size);
-    // selectionSort(arr, size);
+    // bubbleSort(arr, size);
+    selectionSort(arr, size);
     // insertionSort(arr, size);
     // quickSort(arr, 0, size-1);
     // merge_sort(arr, 0, size-1);
@@ -75,8 +89,10 @@ int main() {
 }
 
 /*
-1. Bubble Sort -
-2. Selection Sort -
+for 1 lac elements:
+
+1. Bubble Sort - 21.4600
+2. Selection Sort - 5.6110
 3. Insertion Sort -
 4. Quick Sort -
 5. Merge Sort -
