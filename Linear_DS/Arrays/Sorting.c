@@ -44,6 +44,46 @@ void selectionSort(int* arr, int size) {
     }
 }
 
+void insertionSort(int* arr, int size) {
+    for (int i = 1; i < size; i++) {
+        int j = i-1;
+        int key = arr[i];
+        //move all the elements greater than key to one position
+        while (j >= 0 && key < arr[j]) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        // find a correct position for key
+        arr[j+1] = key;
+    }
+}
+
+int partition(int arr[], int lower, int upper) {
+    int i = (lower - 1);
+
+    int pivot = arr[upper];
+
+    int j;
+    for (j = lower; j < upper; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i+1], &arr[upper]);
+
+    return (i+1);
+}
+
+void quickSort(int arr[], int lower, int upper) {
+    if (upper > lower) {
+        int partitionIndex = partition(arr, lower, upper);
+
+        quickSort(arr, lower, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, upper);
+    }
+}
+
 void test() {
     const int size = 100000;
     // const int size = rand() % 500;  //0 to 499
@@ -60,9 +100,9 @@ void test() {
     clock_t start = clock();
     
     // bubbleSort(arr, size);
-    selectionSort(arr, size);
+    // selectionSort(arr, size);
     // insertionSort(arr, size);
-    // quickSort(arr, 0, size-1);
+    quickSort(arr, 0, size-1);
     // merge_sort(arr, 0, size-1);
     
     clock_t end = clock();
@@ -93,7 +133,6 @@ for 1 lac elements:
 
 1. Bubble Sort - 21.4600
 2. Selection Sort - 5.6110
-3. Insertion Sort -
-4. Quick Sort -
-5. Merge Sort -
+3. Insertion Sort - 4.2270
+4. Quick Sort - 0.1650
 */
