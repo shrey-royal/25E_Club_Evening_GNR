@@ -52,6 +52,30 @@ void enqueueRear(struct Deque *dq, int value) {
     dq->items[dq->rear] = value;
 }
 
+void dequeueFront(struct Deque *dq) {
+    if (isEmpty(dq)) {
+        printf("\nDeque is empty");
+        return;
+    }
+    printf("\nDequeued from front: %d", dq->items[dq->front]);
+    
+    if(dq->front == dq->rear) dq->front = dq->rear = -1;
+    else if (dq->front == MAX_SIZE - 1) dq->front = 0;
+    else dq->front++;
+}
+
+void dequeueRear(struct Deque *dq) {
+    if (isEmpty(dq)) {
+        printf("\nDeque is empty");
+        return;
+    }
+    printf("\nDequeued from rear: %d", dq->items[dq->rear]);
+    
+    if(dq->front == dq->rear) dq->front = dq->rear = -1;
+    else if (dq->rear == 0) dq->rear = MAX_SIZE - 1;
+    else dq->rear--;
+}
+
 int peekFront(struct Deque *dq) {
     if (isEmpty(dq)) {
         printf("\nDeque is empty");
@@ -91,14 +115,19 @@ int main() {
     enqueueFront(&dq, 10);
     enqueueFront(&dq, 20);
     enqueueFront(&dq, 30);
-    display(&dq);
+    // display(&dq);
 
-    printf("\nPeek Front: %d", peekFront(&dq));
-    printf("\nPeek Rear: %d", peekRear(&dq));
+    // printf("\nPeek Front: %d", peekFront(&dq));
+    // printf("\nPeek Rear: %d", peekRear(&dq));
 
     enqueueRear(&dq, 1);
     enqueueRear(&dq, 2);
     enqueueRear(&dq, 3);
+    display(&dq);
+
+    dequeueFront(&dq);
+    dequeueFront(&dq);
+    dequeueRear(&dq);
     display(&dq);
 
     return 0;
