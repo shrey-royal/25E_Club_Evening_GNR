@@ -55,7 +55,7 @@ void printList(node* head) {
 void printReverseList(node* head) {
     if (head == NULL) return;
     printReverseList(head->next);
-    printf("%d -> ", head->data);
+    printf(" <- %d", head->data);
 }
 
 int main() {
@@ -77,9 +77,9 @@ int main() {
 
     printList(head);
 
-    // printf("\nReversed List ==> ");
-    // printReverseList(head);
-    // printf("NULL\n");
+    printf("\nReversed List ==> ");
+    printf("NULL");
+    printReverseList(head);
 
     return 0;
 }
