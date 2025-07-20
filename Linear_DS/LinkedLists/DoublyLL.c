@@ -89,6 +89,21 @@ void deleteAtBeginning(node** head) {
     }
 }
 
+void deleteAtEnd(node** head) {
+    if (*head == NULL) {
+        printf("\nList is empty!");
+    } else if((*head)->next == NULL) {
+        deleteAtBeginning(head);
+    } else {
+        node* temp = *head;
+        while(temp->next->next != NULL) {
+            temp = temp->next;
+        }
+        free(temp->next);
+        temp->next = NULL;
+    }
+}
+
 void printList(node* head) {
     printf("\nList > \tNULL <-> ");
     while(head != NULL) {
