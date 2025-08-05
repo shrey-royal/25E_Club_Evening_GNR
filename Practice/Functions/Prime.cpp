@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int no ,i ,count = 0;
+
+    cout << "Enter a number : ";
+    cin >> no;
+
+    for(i = 1 ; i <= no ;i++)
+    {
+        if(no % i == 0)
+        {
+            count++;
+        }
+    }
+    if(count == 2)
+    {
+        cout << "Number is Prime..";
+    }
+    return 0;
+}
