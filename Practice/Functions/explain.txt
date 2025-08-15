@@ -1,0 +1,32 @@
+1) Store and reverse an OTP (One Time Password).
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    char otp[4];
+    
+    cout << "Enter OTP: " << endl;
+    for (int i=0 ; i<4 ; i++){
+        cin >> otp[i];
+    }
+
+    for (int i=0 ; i<4 ; i++){
+        // cout << "otp of j: " << endl;
+        for (int j=0 ; j<i ; j++){
+            int temp = otp[j];
+            otp[j] = otp[j+1];
+            otp[j+1] = temp;
+            // cout << otp[j];
+        }
+        // cout << endl;
+        // cout << "otp of i: " << otp[i] << endl;
+    }
+
+    cout << "OTP REV : ";
+    for (int i=0 ; i<4 ; i++){
+        cout << otp[i];
+    }
+
+    return 0;
+}
