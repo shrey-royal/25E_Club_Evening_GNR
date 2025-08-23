@@ -26,6 +26,16 @@ void insert(node** root, int data) {
     }
 }
 
+node* search(node* root, int value) {
+    if (root == NULL || root->data == value) return root;
+
+    if (value < root->data) {
+        return search(root->left, value);
+    } else {
+        return search(root->right, value);
+    }
+}
+
 void inorder(node* root) {
     if (root != NULL) {
         inorder(root->left);
@@ -80,7 +90,16 @@ int main() {
     
     // inorder(root);
     // preorder(root);
-    postorder(root);
+    // postorder(root);
+    int data;
+    printf("\nEnter value to search: ");
+    scanf("%d", &data);
+
+    if (search(root, data) != NULL) {
+        printf("\nKey %d exist in the tree.", data);
+    } else {
+        printf("\nKey %d doesn't exist in the tree.", data);
+    }
 
     return 0;
 }
