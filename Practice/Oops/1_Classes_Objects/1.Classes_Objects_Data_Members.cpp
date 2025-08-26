@@ -9,7 +9,7 @@ using namespace std;
 class Student
 {
     // data members -- properties  -- private (default)
-    // protected:
+    // protected: -- NOT ACCESSIBLE IN MAIN FUNCTION
 public:
     string name;
     int rno, marks, age;
