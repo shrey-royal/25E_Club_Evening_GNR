@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 typedef struct Node node;
 
@@ -34,6 +35,67 @@ node* search(node* root, int value) {
     } else {
         return search(root->right, value);
     }
+}
+
+int height(node* root) {
+    if (root == NULL) return 0;
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+}
+
+void levelOrderTraversal(node* root) {
+    if (root == NULL) return;
+
+    node* queue[10];
+    int f=0, r=0;
+    queue[r++] = root;
+
+    printf("\nLevel Order Traversal: ");
+    while(f<r) {
+        node* current = queue[f++];
+        printf("%d, ", current->data);
+        if (current->left != NULL) queue[r++] = current->left;
+        if (current->right != NULL) queue[r++] = current->right;
+    }
+}
+
+node* deleteNode(node* root, int data) {
+    if (root == NULL) return root;
+
+    if (data < root->data) root->left = deleteNode(root->left, data);
+    else if (data > root->data) root->right = deleteNode(root->right, data);
+    else {
+        if (root->left == NULL) {
+            node* temp = root->right;
+            free(root);
+            return temp;
+        } else if(root->right == NULL) {
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        node* temp = root->right;
+        while(temp->left != NULL) {
+            temp = temp->left;
+        }
+
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+void findMinMax(node* root, int* min, int* max) {
+    if (root == NULL) return;
+
+    if (root->data < *min) *min = root->data;
+    if (root->data > *max) *max = root->data;
+
+    findMinMax(root->left, min, max);
+    findMinMax(root->right, min, max);
 }
 
 void inorder(node* root) {
@@ -91,15 +153,29 @@ int main() {
     // inorder(root);
     // preorder(root);
     // postorder(root);
-    int data;
-    printf("\nEnter value to search: ");
-    scanf("%d", &data);
+    // int data;
+    // printf("\nEnter value to search: ");
+    // scanf("%d", &data);
 
-    if (search(root, data) != NULL) {
-        printf("\nKey %d exist in the tree.", data);
-    } else {
-        printf("\nKey %d doesn't exist in the tree.", data);
-    }
+    // if (search(root, data) != NULL) {
+    //     printf("\nKey %d exist in the tree.", data);
+    // } else {
+    //     printf("\nKey %d doesn't exist in the tree.", data);
+    // }
+
+    // printf("\nHeight of the tree: %d", height(root));
+    // levelOrderTraversal(root);
+
+    // printf("\n\n");
+    // root = deleteNode(root, 3);
+    // printTree(root, 0);
+
+    int min, max;
+    min = INT_MAX;
+    max = INT_MIN;
+    findMinMax(root, &min, &max);
+    printf("\nMinimum value in the tree: %d", min);
+    printf("\nMaximum value in the tree: %d\n", max);
 
     return 0;
 }
