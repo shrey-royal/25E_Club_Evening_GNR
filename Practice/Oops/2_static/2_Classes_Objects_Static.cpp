@@ -20,6 +20,8 @@ public:
         fixedCharge += 120; // add charge each time purchase is made
     }
 
+    
+
     void getData()
     {
         cout << left << setw(15) << customerName

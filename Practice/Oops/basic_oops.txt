@@ -1,0 +1,40 @@
+classes -- object 
+
+Access Specifiers
+    public               -- all 
+    protected            -- within other classes only (using inheritance)
+    private (default)    -- within the same class only
+
+
+Classes 
+    Data members -- properties   (variables)
+    Member Function -- Behaviours -- Methods  (user define functions)
+
+object is created of the class
+==============================================================================>
+
+Static 
+
+
+
+
+
+
+
+#define PI 3.14
+
+int main()
+{
+    PI --call -- value can be used
+    PI = 3.256; // not allowed --- bcz it is constant and cannot be changed..
+}
+
+
+
+
+
+
+
+
+
+

@@ -27,6 +27,6 @@ int main()
     s.grades = 'A';
 
     cout << "Name\tRno\tMarks\tAge\tGrades\n";
-    cout << s.name << "\t" << s.rno << "\t  " << s.marks << "\t"  << s.age << "\t" << s.grades;
+    cout << s.name << "\t" << s.rno << "\t  " << s.marks << "\t" << s.age << "\t" << s.grades;
     return 0;
 }

@@ -1,0 +1,32 @@
+- Kind of method/function
+- created in the class
+- it requires no return types
+- Constructor name is same as class name 
+
+-- It initializes as soon as the object is created ..
+-- it does not need to be called...
+
+syntax :
+
+
+class Person
+{
+public : 
+    Person()
+    {
+        //logic .. print ..scan
+    }
+};
+
+
+int main()
+{
+    Person p;
+}
+======================================================
+
+Types 
+
+1) Default Constructor          -- with no parameters
+2) Parameterized Constructor    -- with parameters
+3) Copy Constructor             -- it will take another object value as data
